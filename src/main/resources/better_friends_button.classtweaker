@@ -1,0 +1,12 @@
+classTweaker v1 official
+
+accessible method net/minecraft/client/gui/screens/Screen removeWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)V
+accessible method net/minecraft/client/gui/screens/Screen addRenderableWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+
+accessible field net/minecraft/client/gui/screens/TitleScreen friends Lnet/minecraft/client/gui/components/FriendsButton;
+
+accessible field net/minecraft/client/gui/screens/PauseScreen friends Lnet/minecraft/client/gui/components/FriendsButton;
+
+accessible field net/minecraft/client/gui/screens/friends/FriendsOverlayScreen backgroundScreen Lnet/minecraft/client/gui/screens/Screen;
+accessible field net/minecraft/client/gui/screens/friends/FriendsOverlayScreen tabNavigationBar Lnet/minecraft/client/gui/components/tabs/TabNavigationBar;
+accessible field net/minecraft/client/gui/screens/friends/FriendsOverlayScreen layout Lnet/minecraft/client/gui/layouts/LinearLayout;
