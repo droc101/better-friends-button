@@ -3,7 +3,7 @@
   "id": "better_friends_button",
   "version": "${version}",
   "name": "Better Friends Button",
-  "description": "",
+  "description": "Improves the look and feel of the Friends button",
   "authors": [
     {
       "name": "droc101"
@@ -15,7 +15,11 @@
   },
   "license": "MIT",
   "environment": "client",
-  "entrypoints": {},
+  "entrypoints": {
+    "client": [
+      "dev.droc101.better_friends_button.client.BetterFriendsButton"
+    ]
+  },
   "mixins": [
     "better_friends_button.mixins.json"
   ],
