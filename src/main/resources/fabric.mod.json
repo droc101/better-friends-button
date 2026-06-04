@@ -26,7 +26,7 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
-    "minecraft": "26.2-pre.3"
+    "minecraft": "26.2-pre.4"
   },
   "accessWidener": "better_friends_button.classtweaker"
 }
