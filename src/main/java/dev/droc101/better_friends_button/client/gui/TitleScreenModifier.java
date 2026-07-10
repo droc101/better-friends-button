@@ -2,9 +2,7 @@ package dev.droc101.better_friends_button.client.gui;
 
 import com.terraformersmc.modmenu.config.ModMenuConfig;
 import com.terraformersmc.modmenu.gui.widget.ModMenuButtonWidget;
-import com.terraformersmc.modmenu.gui.widget.UpdateCheckerTexturedButtonWidget;
 import dev.droc101.better_friends_button.client.gui.widget.FullFriendsButton;
-import dev.droc101.better_friends_button.client.gui.widget.ModMenuButton;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.loader.api.FabricLoader;
@@ -32,9 +30,9 @@ public class TitleScreenModifier {
         for (int i = 0; i < widgets.size(); i++) {
             AbstractWidget w = widgets.get(i);
             if (modMenuLoaded) {
-                if (w instanceof ModMenuButtonWidget b) {
+                if (w instanceof ModMenuButtonWidget) {
                     modsButtonIndex = i;
-                } else if (w instanceof UpdateCheckerTexturedButtonWidget b) {
+                } else if (w instanceof SpriteIconButton) {
                     modsIconIndex = i;
                 }
             } else if (w instanceof AbstractButton) {
@@ -47,8 +45,10 @@ public class TitleScreenModifier {
         }
 
         FullFriendsButton fullFriendsButton = null;
+        SpriteIconButton modsIcon;
 
         if (modsButtonIndex != -1) {
+            modsIcon = null;
             ModMenuButtonWidget modsButton = (ModMenuButtonWidget) widgets.get(modsButtonIndex);
             if (ModMenuConfig.MODIFY_TITLE_SCREEN.getValue()) {
                 if (ModMenuConfig.MODS_BUTTON_STYLE.getValue() == ModMenuConfig.TitleMenuButtonStyle.CLASSIC) {
@@ -60,14 +60,15 @@ public class TitleScreenModifier {
                 }
             }
         } else if (modsIconIndex != -1) {
-            UpdateCheckerTexturedButtonWidget modsIcon = (UpdateCheckerTexturedButtonWidget) widgets.get(modsIconIndex);
+            modsIcon = (SpriteIconButton) widgets.get(modsIconIndex);
             fullFriendsButton = new FullFriendsButton(Minecraft.getInstance(), titleScreen.width / 2 - 100, modsIcon.getY(), 200, 20, titleScreen);
-            ModMenuButton modMenuButton = new ModMenuButton(titleScreen.width / 2 + 104, fullFriendsButton.getY(), 20, titleScreen);
-            titleScreen.removeWidget(modsIcon);
-            titleScreen.addRenderableWidget(modMenuButton);
-        } else if (realmsButtonIndex != -1) {
-            AbstractButton realmsButton = (AbstractButton)widgets.get(realmsButtonIndex);
-            fullFriendsButton = new FullFriendsButton(Minecraft.getInstance(), titleScreen.width / 2 - 100, realmsButton.getY() + 24, 200, 20, titleScreen);
+            modsIcon.setPosition(titleScreen.width / 2 + 104, fullFriendsButton.getY());
+        } else {
+            modsIcon = null;
+            if (realmsButtonIndex != -1) {
+                AbstractButton realmsButton = (AbstractButton)widgets.get(realmsButtonIndex);
+                fullFriendsButton = new FullFriendsButton(Minecraft.getInstance(), titleScreen.width / 2 - 100, realmsButton.getY() + 24, 200, 20, titleScreen);
+            }
         }
 
 
@@ -76,7 +77,7 @@ public class TitleScreenModifier {
 
             int bottomOptionsY = fullFriendsButton.getY() + 24;
             widgets.forEach((w) -> {
-                if (w instanceof SpriteIconButton i && !(w instanceof ModMenuButton)) {
+                if (w instanceof SpriteIconButton i && w != modsIcon) {
                     i.setY(bottomOptionsY);
                 } else if (w instanceof Button) {
                     final String optionsButtonText = Component.translatable("menu.options").getString();
