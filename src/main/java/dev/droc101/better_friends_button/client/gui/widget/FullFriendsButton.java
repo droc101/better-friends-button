@@ -1,7 +1,7 @@
 package dev.droc101.better_friends_button.client.gui.widget;
 
+import dev.droc101.better_friends_button.client.BetterFriendsButton;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ActiveTextCollector;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
@@ -17,8 +17,8 @@ import org.jspecify.annotations.NonNull;
 
 public class FullFriendsButton extends Button.Plain {
 
-    private static final Identifier NOTIFICATION_BACKGROUND = Identifier.fromNamespaceAndPath("better_friends_button", "friends/notification");
-    private static final Identifier NOTIFICATION_BACKGROUND_HOVER = Identifier.fromNamespaceAndPath("better_friends_button", "friends/notification_highlight");
+    private static final Identifier NOTIFICATION_BACKGROUND = Identifier.fromNamespaceAndPath(BetterFriendsButton.MOD_ID, "friends/notification");
+    private static final Identifier NOTIFICATION_BACKGROUND_HOVER = Identifier.fromNamespaceAndPath(BetterFriendsButton.MOD_ID, "friends/notification_highlight");
 
     private static final Component FRIENDS_BUTTON_TEXT = Component.translatable("gui.friends.open");
 
@@ -32,9 +32,7 @@ public class FullFriendsButton extends Button.Plain {
             int h,
             Screen parent
     ) {
-        super(x, y, w, h, FRIENDS_BUTTON_TEXT, (btn) -> {
-            OnlineOptionsScreen.confirmFriendsListEnabled(Minecraft.getInstance(), () -> Minecraft.getInstance().gui.setScreen(new FriendsOverlayScreen(parent)), parent);
-        }, Button.DEFAULT_NARRATION);
+        super(x, y, w, h, FRIENDS_BUTTON_TEXT, (_) -> OnlineOptionsScreen.confirmFriendsListEnabled(Minecraft.getInstance(), () -> client.gui.setScreen(new FriendsOverlayScreen(parent)), parent), Button.DEFAULT_NARRATION);
     }
 
     @Override
@@ -45,8 +43,6 @@ public class FullFriendsButton extends Button.Plain {
             if (incomingRequestCount > 9) {
                 notificationCount = "9+";
             }
-
-            ActiveTextCollector textRenderer = graphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE);
 
             Font font = Minecraft.getInstance().font;
 

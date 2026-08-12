@@ -1,0 +1,19 @@
+{
+  "menu.better_friends_button.config.title": "Better Friends Button Options",
+
+  "options.better_friends_button.title_screen": "Title Screen",
+  "options.better_friends_button.pause_menu": "Pause Menu",
+  "options.better_friends_button.friends_menu": "Friends List",
+
+  "options.better_friends_button.layout_style": "Layout",
+  "options.better_friends_button.layout_style.classic": "Classic",
+  "options.better_friends_button.layout_style.wide_icon_row": "Wide Icons",
+  "options.better_friends_button.layout_style.small_icon_row": "Small Icons",
+
+  "options.better_friends_button.visible": "Friends Button",
+
+  "options.better_friends_button.done_button": "Add Done Button",
+  "options.better_friends_button.settings_button": "Add Settings Button",
+
+  "better_friends_button.settings_button": "Better Friends Button Settings"
+}

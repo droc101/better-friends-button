@@ -18,6 +18,9 @@
   "entrypoints": {
     "client": [
       "dev.droc101.better_friends_button.client.BetterFriendsButton"
+    ],
+    "modmenu": [
+      "dev.droc101.better_friends_button.client.config.ModMenuApiImpl"
     ]
   },
   "mixins": [
